@@ -7,10 +7,10 @@ This project aims to develop and evaluate models for seizure detection using EEG
 
 ## File Directory
 
-### Root Files
+#### Root Files
 - `README.md`
 
-### Data Directory
+#### Data Directory
 - `data/`
   - `data.csv`： original dataset
   - `data_cleaned.csv`: cleaned dataset
@@ -18,27 +18,31 @@ This project aims to develop and evaluate models for seizure detection using EEG
     - `train.csv`
     - `test.csv`
 
-### Models Directory
+#### Models Directory
 - `models/`
-  - `autoencoder.pth`
-  - `vae.pth`
-  - `conditional_vae.pth`
+  - `autoencoder.h5`
+  - `vae.h5`
+  - `conditional_vae.h5`
 
-### Notebooks
+#### Notebooks
 - `eda_and_cleaning.ipynb`
 - `baseline_detection_model.ipynb`
 - `generate_challenging_test_cases.ipynb`
-
-### Data Augmentation Directory
-- `data_augmentation/`
+- `data_augmentation/`: recommend to use GPU
   - `train_autoencoder.ipynb`
   - `train_vae_and_conditional_vae.ipynb` 
   - `data_augmentation_pipeline.ipynb`
 
 
-## How to Use
+## Usage
 
-1. Run the notebooks in sequence for a complete workflow:
+1. Create environment
+```shell
+conda create --name seizuredetection python=3.10 -y
+conda activate seizuredetection
+pip install .
+```
+2. Run the notebooks in sequence for a complete workflow:
    - Start with `eda_and_cleaning.ipynb` to clean and preprocess the data.
    - Train baseline models using `baseline_detection_model.ipynb`.
    - Generate challenging test cases with `generate_challenging_test_cases.ipynb`.
@@ -47,7 +51,9 @@ This project aims to develop and evaluate models for seizure detection using EEG
 
 ## Details
 
-### Data Cleaning, Transformation, and Exploratory Data Analysis (EDA)
+### 1. Data Cleaning, Transformation, and Exploratory Data Analysis (EDA)
+
+---
 
 #### Notebook: `eda_and_cleaning.ipynb`
 **Description**: This notebook performs initial data cleaning, transformations, and exploratory data analysis to prepare the dataset for modeling.
@@ -56,12 +62,16 @@ This project aims to develop and evaluate models for seizure detection using EEG
 - `data/data.csv`: The original raw dataset.
 - `data/cleaned_data.csv`: The cleaned dataset focused on seizure data.
 
-### Baseline Seizure Detection Model with Performance Metrics
+### 2. Baseline Seizure Detection Model with Performance Metrics
+
+---
 
 #### Notebook: `baseline_detection_model.ipynb`
 **Description**: Implements baseline models such as SVM, ANN, and Inception Nucleus. Performance is evaluated using standard metrics.
 
-### Generating Challenging Test Cases
+### 3. Generating Challenging Test Cases
+
+---
 
 #### Notebook: `generate_challenging_test_cases.ipynb`
 **Description**: This notebook generates challenging test cases to assess the robustness of seizure detection models.
@@ -70,7 +80,9 @@ This project aims to develop and evaluate models for seizure detection using EEG
 - `data/hard_test_cases/train.csv`: Training data for hard test cases.
 - `data/hard_test_cases/test.csv`: Hard test cases for model evaluation.
 
-### Data Augmentation
+### 4. Data Augmentation
+
+---
 
 #### Notebook 1: `train_autoencoder.ipynb`
 **Description**: Trains an autoencoder model for EEG signal reconstruction.
@@ -94,13 +106,14 @@ This project aims to develop and evaluate models for seizure detection using EEG
 
 **Output**: A function with original signals and augmentation methods as input, and reconstructed EEG signals as output.
 
-### Evaluation of Augmentation Methods
-
 The data augmentation pipeline evaluates seizure detection model performance after applying various augmentation techniques, ensuring robustness and accuracy across diverse datasets.
 
 ---
 
-Feel free to reach out to Authors for more details:
+Feel free to reach out to authors for more details:
+
 Naman Garg: namangarg2025@u.northwestern.edu
+
 Meixi Lu: meixilu2025@u.northwestern.edu
+
 Ramirez-Aristizabal, Adolfo: adolfo.ramirez@accenture.com
