@@ -20,9 +20,11 @@ This project aims to develop and evaluate models for seizure detection using EEG
 
 #### Models Directory
 - `models/`
+  - `CVAE/`
+    - `class_embedding_model/`
+    - `cvae_decoder_model/`
   - `autoencoder.h5`
-  - `vae.h5`
-  - `conditional_vae.h5`
+  - `autoencoder_2d_dropout.h5`
 
 #### Notebooks
 - `eda_and_cleaning.ipynb`
@@ -42,7 +44,11 @@ conda create --name seizuredetection python=3.10 -y
 conda activate seizuredetection
 pip install .
 ```
-2. Run the notebooks in sequence for a complete workflow:
+
+2. Download model files from [Google Drive](https://drive.google.com/file/d/1g6DlQMerSRmP_ODjevdYUmoKtIAkfEjp/view?usp=drive_link) and put the `models/` folder in the project directory.
+
+
+3. Run the notebooks in sequence for a complete workflow:
    - Start with `eda_and_cleaning.ipynb` to clean and preprocess the data.
    - Train baseline models using `baseline_detection_model.ipynb`.
    - Generate challenging test cases with `generate_challenging_test_cases.ipynb`.
@@ -98,11 +104,13 @@ pip install .
 
 #### Notebook 3: `data_augmentation_pipeline.ipynb`
 **Description**: Implements a synthetic data augmentation pipeline to generate variations of EEG signals using the following methods:
-1. **Time Warping**: Alters the temporal properties of the signal.
-2. **Amplitude Scaling**: Scales the amplitude of the signal.
-3. **Autoencoder**: Reconstructs or augments EEG signals.
-4. **Variational Autoencoder (VAE)**: Learns latent representations to augment EEG data.
-5. **Conditional VAE**: Generates augmented data conditioned on specific labels.
+1. **Noise**: Add noise to the data.
+2. **Time Warping**: Alters the temporal properties of the signal.
+3. **Time Drifting**: Add drift to simulate gradual shifts over time.
+4. **Time Croping**: Crop the time-series to 90% of its original length.
+5. **Amplitude Scaling**: Scales the amplitude of the signal.
+6. **Autoencoder**: Reconstructs or augments EEG signals.
+7. **Conditional Variational Autoencoder (CVAE)**: Generates augmented data conditioned on specific labels.
 
 **Output**: A function with original signals and augmentation methods as input, and reconstructed EEG signals as output.
 
